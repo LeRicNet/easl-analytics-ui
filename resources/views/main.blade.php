@@ -9,8 +9,9 @@
     @livewireStyles
 </head>
 <body class="antialiased container">
+<div class="h-screen w-screen flex">
+    under construction
 </div>
-<livewire:test-panel />
 @livewireScripts
 </body>
 </html>
