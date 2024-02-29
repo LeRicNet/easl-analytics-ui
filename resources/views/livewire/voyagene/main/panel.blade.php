@@ -13,8 +13,8 @@
             // Assuming each element of the array is an object with properties x and y
             for(var i=0; i < data.length; i++) {
                 var obj = data[i];
-                xValues.push(obj.UMAP1);
-                yValues.push(obj.UMAP2);
+                xValues.push(obj.Dim1);
+                yValues.push(obj.Dim2);
                 colValues.push(obj.color);
             }
 
@@ -54,6 +54,58 @@
             var data = [trace1];
 
             Plotly.newPlot('main-panel', data, layout);
+        });
+        $wire.on('update-main-view', function(){
+            var data = @json($data);
+
+            var xValues = [];
+            var yValues = [];
+            var colValues = [];
+
+            // Assuming each element of the array is an object with properties x and y
+            for(var i=0; i < data.length; i++) {
+                var obj = data[i];
+                xValues.push(obj.Dim1);
+                yValues.push(obj.Dim2);
+                colValues.push(obj.color);
+            }
+
+            var trace1 = {
+                x: xValues,
+                y: yValues,
+                mode: 'markers',
+                type: 'scatter',
+                marker: {
+                    color: colValues
+                }
+            };
+
+            var layout = {
+                // title: "Scatter plot!",
+                xaxis: {
+                    title: {
+                        text: 'UMAP 1',
+                        font: {
+                            family: 'Courier New, monospace',
+                            size: 18,
+                            color: '#7f7f7f'
+                        }
+                    }
+                },
+                yaxis: {
+                    title: {
+                        text: 'UMAP 2',
+                        font: {
+                            family: 'Courier New, monospace',
+                            size: 18,
+                            color: '#7f7f7f'
+                        }
+                    }
+                }};
+
+            var data = [trace1];
+
+            Plotly.recreate('main-panel', data, layout);
         });
     </script>
 </div>
