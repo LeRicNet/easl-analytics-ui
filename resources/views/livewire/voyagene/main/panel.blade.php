@@ -1,111 +1,49 @@
-<div class="h-full w-3/4 border border-solid border-black bg-white">
+<div x-data="{ chart: null, chartData: @entangle('chartData') }" x-init="loadData" wire:ignore
+     class="h-full w-3/4 border border-solid border-black bg-white">
 <!--    Main Panel-->
     {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
     <div id="main-panel" class="h-full w-full"></div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function(){
-            var data = @json($data);
+        function loadData() {
 
-            var xValues = [];
-            var yValues = [];
-            var colValues = [];
+            this.chartData = @json($chartData)
 
-            // Assuming each element of the array is an object with properties x and y
-            for(var i=0; i < data.length; i++) {
-                var obj = data[i];
-                xValues.push(obj.Dim1);
-                yValues.push(obj.Dim2);
-                colValues.push(obj.color);
-            }
-
-            var trace1 = {
-                x: xValues,
-                y: yValues,
+            console.log(this.chartData);
+            
+            var trace = {
                 mode: 'markers',
-                type: 'scatter',
+                type: 'scattergl', // Use 'scattergl' for improved performance with large datasets
+                x: this.chartData.map(function(item) { return item.Dim1; }),
+                y: this.chartData.map(function(item) { return item.Dim2; }),
                 marker: {
-                    color: colValues
+                    color: this.chartData.map(function(item) { return item.color; }),
+                    size: 8
                 }
             };
 
             var layout = {
-                // title: "Scatter plot!",
+                title: 'Scatter Plot',
                 xaxis: {
-                    title: {
-                        text: 'UMAP 1',
-                        font: {
-                            family: 'Courier New, monospace',
-                            size: 18,
-                            color: '#7f7f7f'
-                        }
-                    }
+                    title: 'Dim1'
                 },
                 yaxis: {
-                    title: {
-                        text: 'UMAP 2',
-                        font: {
-                            family: 'Courier New, monospace',
-                            size: 18,
-                            color: '#7f7f7f'
-                        }
-                    }
-                }};
-
-            var data = [trace1];
-
-            Plotly.newPlot('main-panel', data, layout);
-        });
-        $wire.on('update-main-view', function(){
-            var data = @json($data);
-
-            var xValues = [];
-            var yValues = [];
-            var colValues = [];
-
-            // Assuming each element of the array is an object with properties x and y
-            for(var i=0; i < data.length; i++) {
-                var obj = data[i];
-                xValues.push(obj.Dim1);
-                yValues.push(obj.Dim2);
-                colValues.push(obj.color);
-            }
-
-            var trace1 = {
-                x: xValues,
-                y: yValues,
-                mode: 'markers',
-                type: 'scatter',
-                marker: {
-                    color: colValues
+                    title: 'Dim2'
                 }
             };
 
-            var layout = {
-                // title: "Scatter plot!",
-                xaxis: {
-                    title: {
-                        text: 'UMAP 1',
-                        font: {
-                            family: 'Courier New, monospace',
-                            size: 18,
-                            color: '#7f7f7f'
-                        }
-                    }
-                },
-                yaxis: {
-                    title: {
-                        text: 'UMAP 2',
-                        font: {
-                            family: 'Courier New, monospace',
-                            size: 18,
-                            color: '#7f7f7f'
-                        }
-                    }
-                }};
+            var data = [trace];
 
-            var data = [trace1];
+            this.chart = Plotly.newPlot('main-panel', data, layout);
+        }
 
-            Plotly.recreate('main-panel', data, layout);
+        document.addEventListener('update-main-view', function (e) {
+            console.log('update-main-view triggered');
+            console.log(e.data);
+            Plotly.purge('main-panel');
+            loadData();
         });
+
     </script>
+
 </div>

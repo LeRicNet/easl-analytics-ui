@@ -16,7 +16,7 @@
         <label for="color-options" class="block mb-2 text-sm font-medium text-gray-900">Color By</label>
         <select wire:model="color" wire:change="update()" id="color-options" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
         focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-            <option value="celltypes" selected>Cell Type</option>
+            <option value="celltypes">Cell Type</option>
             <option value="seurat_clusters">Cluster</option>
             <option value="Gene">Gene</option>
             <option value="Gene Set">Gene Set</option>

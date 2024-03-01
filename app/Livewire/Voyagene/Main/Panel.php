@@ -12,35 +12,45 @@ class Panel extends Component
     public $body;
     public $output;
     public $color;
+    public $chartData;
 
     public function mount()
     {
         if (!isset($this->color)) {
             $this->color = 'seurat_clusters';
         }
+        $this->loadData();
+    }
+
+    public function loadData()
+    {
         $client = new Client();
         $response = $client->request(
             'POST',
             'http://140.226.123.129:8004/ocpu/library/voyageneR/R/plotDimReduction/json',
             [
-            'headers' => [
-                'Content-Type' => 'application/json',
-            ],
-            'json' => [
-                'color_by' => $this->color,
-            ],
-        ]);
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                ],
+                'json' => [
+                    'color_by' => $this->color,
+                ],
+            ]
+        );
         $statusCode = $response->getStatusCode();
         $this->body = $response->getBody()->getContents();
         $this->output = json_decode($this->body);
+
+        // Assuming the output is the data for the chart
+        $this->chartData = $this->output;
     }
 
     #[On('update-main-view')]
     public function update($color)
     {
         $this->color = $color;
-        $this->dispatch('$refresh');
-    }
+        $this->loadData();
+    } 
 
     public function render()
     {

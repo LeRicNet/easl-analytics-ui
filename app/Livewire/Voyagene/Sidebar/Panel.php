@@ -9,6 +9,13 @@ class Panel extends Component
     public $view;
     public $color;
 
+    public function mount ()
+    {
+        if (!isset($this->color)) {
+            $this->color = 'seurat_clusters';
+        }
+    }
+
     public function update()
     {
         $this->dispatch('update-main-view', color: $this->color);
