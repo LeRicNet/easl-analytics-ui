@@ -17,7 +17,7 @@ class Panel extends Component
     public function mount()
     {
         if (!isset($this->color)) {
-            $this->color = 'seurat_clusters';
+            $this->color = 'celltypes';
         }
         $this->loadData();
     }
@@ -45,12 +45,13 @@ class Panel extends Component
         $this->chartData = $this->output;
     }
 
-    #[On('update-main-view')]
-    public function update($color)
-    {
-        $this->color = $color;
-        $this->loadData();
-    } 
+//    #[On('update-main-view')]
+//    public function update($color)
+//    {
+//        $this->color = $color;
+//        $this->loadData();
+//        dump($this->output[0]);
+//    }
 
     public function render()
     {

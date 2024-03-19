@@ -11,14 +11,16 @@ class Panel extends Component
 
     public function mount ()
     {
-        if (!isset($this->color)) {
-            $this->color = 'seurat_clusters';
-        }
+//        if (!isset($this->color)) {
+//            $this->color = 'seurat_clusters';
+//        }
     }
 
     public function update()
     {
-        $this->dispatch('update-main-view', color: $this->color);
+        if ($this->color != 'Gene') {
+            $this->dispatch('update-main-view', color: $this->color);
+        }
     }
 
     public function render()

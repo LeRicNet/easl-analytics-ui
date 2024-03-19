@@ -6,44 +6,111 @@
 
     <script>
         function loadData() {
+            this.color = @json($color);
+            var url = 'http://140.226.123.129:8004/ocpu/library/voyageneR/R/plotDimReduction/json';
+            var data = { color_by: this.color };
 
-            this.chartData = @json($chartData)
-
-            console.log(this.chartData);
-            
-            var trace = {
-                mode: 'markers',
-                type: 'scattergl', // Use 'scattergl' for improved performance with large datasets
-                x: this.chartData.map(function(item) { return item.Dim1; }),
-                y: this.chartData.map(function(item) { return item.Dim2; }),
-                marker: {
-                    color: this.chartData.map(function(item) { return item.color; }),
-                    size: 8
-                }
-            };
-
-            var layout = {
-                title: 'Scatter Plot',
-                xaxis: {
-                    title: 'Dim1'
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                yaxis: {
-                    title: 'Dim2'
-                }
-            };
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.body = JSON.stringify(data);
+                    this.output = JSON.parse(this.body);
 
-            var data = [trace];
+                    // Assuming the output is the data for the chart
+                    this.chartData = this.output;
+                     var trace = {
+                            mode: 'markers',
+                            type: 'scattergl', // Use 'scattergl' for improved performance with large datasets
+                            x: this.chartData.map(function(item) { return item.Dim1; }),
+                            y: this.chartData.map(function(item) { return item.Dim2; }),
+                            hovertext: this.chartData.map(function(item) { return item.category }),
+                            marker: {
+                                color: this.chartData.map(function(item) { return item.color; }),
+                                size: 8
+                            }
+                        };
 
-            this.chart = Plotly.newPlot('main-panel', data, layout);
+                        var layout = {
+                            title: 'Scatter Plot',
+                            xaxis: {
+                                title: 'Dim1'
+                            },
+                            yaxis: {
+                                title: 'Dim2'
+                            }
+                        };
+
+                        var data = [trace];
+
+                        this.chart = Plotly.newPlot('main-panel', data, layout);
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+        }
+
+        function updateData(color) {
+            this.color = color;
+            console.log(this.color); // Equivalent to dump($this->color) in PHP
+
+            var url = 'http://140.226.123.129:8004/ocpu/library/voyageneR/R/plotDimReduction/json';
+            var data = { color_by: this.color };
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.body = JSON.stringify(data);
+                    this.output = JSON.parse(this.body);
+
+                    // Assuming the output is the data for the chart
+                    this.chartData = this.output;
+                    var trace = {
+                        mode: 'markers',
+                        type: 'scattergl', // Use 'scattergl' for improved performance with large datasets
+                        x: this.chartData.map(function(item) { return item.Dim1; }),
+                        y: this.chartData.map(function(item) { return item.Dim2; }),
+                        hovertext: this.chartData.map(function(item) { return item.category }),
+                        marker: {
+                            color: this.chartData.map(function(item) { return item.color; }),
+                            size: 8
+                        }
+                    };
+
+                    var layout = {
+                        title: 'Scatter Plot',
+                        xaxis: {
+                            title: 'Dim1'
+                        },
+                        yaxis: {
+                            title: 'Dim2'
+                        }
+                    };
+
+                    var data = [trace];
+                    var chartDiv = document.getElementById('main-panel');
+                    Plotly.purge(chartDiv);
+                    this.chart = Plotly.newPlot('main-panel', data, layout);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
         }
 
         document.addEventListener('update-main-view', function (e) {
-            console.log('update-main-view triggered');
-            console.log(e.data);
-            Plotly.purge('main-panel');
-            loadData();
+            updateData(e.detail.color);
         });
-
     </script>
 
 </div>
