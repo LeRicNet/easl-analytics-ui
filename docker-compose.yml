@@ -6,6 +6,7 @@ services:
             args:
                 WWWGROUP: '${WWWGROUP}'
         image: sail-8.3/app
+        hostname: voyagene
         extra_hosts:
             - 'host.docker.internal:host-gateway'
         ports:
@@ -102,7 +103,10 @@ services:
             - sail
 
     opencpu:
-        image: 'opencpu/rstudio:latest'
+        container_name: voyagene
+        build:
+            context: .
+            dockerfile: ./dockerfiles/opencpu/Dockerfile
         ports:
             - 8004:8004
         volumes:

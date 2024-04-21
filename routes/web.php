@@ -20,3 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/voyagene', function () {
     return view('voyagene');
 });
+
+Route::get('/easl-va', function() {
+    return view('easl-va');
+});
