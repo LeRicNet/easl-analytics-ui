@@ -1,4 +1,4 @@
-<div id="{{ $id }}" class="hidden z-[{{ $zIndex }}] draggable ui-widget-content absolute left-[4%] top-[50%]">
+<div id="{{ $id }}" class="hidden z-[{{ $zIndex }}] draggable resizable absolute left-[4%] top-[50%]">
     <div style="background: linear-gradient(0deg, #999999 0%, #CCCCCC 100%)"
          class="relative flex flex-col justify-center items-center
         space-y-4 ms-2

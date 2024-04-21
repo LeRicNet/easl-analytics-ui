@@ -14,6 +14,7 @@
     <!-- Include jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     @livewireStyles
     <style>
         body {
@@ -22,10 +23,16 @@
             background-position: center center;
             background-size: 400%;
         }
+
+        svg {
+            width: 100%;
+            height: auto;
+        }
     </style>
     <script>
         $( function() {
             $( ".draggable" ).draggable();
+            $( ".resizable").resizable();
         } );
     </script>
 </head>
@@ -38,11 +45,11 @@
 <div class="z-1 absolute left-[1%] top-[50%] transform -translate-y-1/2">
     <livewire:easl-va.left-sidebar.left-sidebar />
 </div>
-<div id="formatting-panel" class="hidden z-2 draggable ui-widget-content absolute left-[4%] top-[50%] transform -translate-y-1/2 ps-24">
+<div id="formatting-panel" class="hidden z-2 draggable absolute left-[4%] top-[50%] transform -translate-y-1/2 ps-24">
     <livewire:easl-va.left-sidebar.formatting />
 </div>
 
-<div id="tool-panel" class="hidden z-2 draggable ui-widget-content absolute left-[25%] top-[50%] transform -translate-y-1/2 ps-24">
+<div id="tool-panel" class="hidden z-2 draggable absolute left-[25%] top-[50%] transform -translate-y-1/2 ps-24">
     <livewire:easl-va.left-sidebar.tools />
 </div>
 
