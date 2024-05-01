@@ -11,74 +11,84 @@
         <hr class="border-[#999999] border-t-1 mx-4">
         <div class="flex flex-row w-full justify-start px-2 pt-2
          text-xs text-[#999999] uppercase">
-            Detail Plots
+            Evaluation (DECIDE-AI)
         </div>
         <div class="flex flex-row w-full justify-start ps-[34px]
          text-[10px] text-[#999999] lowercase">
-            session overview
+            Participants
         </div>
-        <div class="flex grid grid-rows-1 grid-cols-4 w-full items-center justify-center">
-            <div> {{-- Session Barcodes --}}
-                <livewire:easl-va.utils.button title="show session barcodes" id="detail-plot-barcode" icon_path="assets/barcode-icon.svg" />
-                <livewire:easl-va.utils.floating-window zIndex="100" id="detail-plot-barcode" label="session barcodes" type="barcodes"/>
+        <div class="flex grid grid-rows-1 grid-cols-2 gap-x-1 w-full items-center justify-between text-center font-medium text-slate-600">
+            <button class="border border-solid border-slate-500 rounded shadow h-[50px]">Patient Overview</button> {{-- annotation heatmaps --}}
+            <button class="border border-solid border-slate-500 rounded shadow h-[50px]">User Overview</button> {{-- annotation heatmaps --}}
+        </div>
+
+        <div class="flex flex-row w-full justify-start ps-[34px]
+         text-[10px] text-[#999999] lowercase">
+            Implementations
+        </div>
+        <div class="flex grid grid-rows-1 grid-cols-2 gap-x-1 w-full items-center justify-between text-center font-medium text-slate-600">
+            <button class="border border-solid border-slate-500 rounded shadow h-[50px]">Session Overview</button> {{-- annotation heatmaps --}}
+            <button class="border border-solid border-slate-500 rounded shadow h-[50px]">Survey: SNS</button> {{-- annotation heatmaps --}}
+        </div>
+
+        <div class="flex flex-row w-full justify-start ps-[34px]
+         text-[10px] text-[#999999] lowercase">
+            Modifications
+        </div>
+        <div class="flex grid grid-rows-1 grid-cols-2 gap-x-1 w-full items-center justify-between text-center font-medium text-slate-600">
+            <button class="border border-solid border-slate-500 rounded shadow h-[50px]">AI Change Logs</button> {{-- annotation heatmaps --}}
+            <button class="border border-solid border-slate-500 rounded shadow h-[50px]">UI Change Logs</button> {{-- annotation heatmaps --}}
+        </div>
+
+        <div class="flex flex-row w-full justify-start ps-[34px]
+         text-[10px] text-[#999999] lowercase">
+            Human-Computer Agreement
+        </div>
+        <div class="flex grid grid-rows-1 grid-cols-2 gap-x-1 w-full items-center justify-between text-center font-medium text-slate-600">
+            <button class="border border-solid border-slate-500 rounded shadow h-[50px]">Cohen's Kappa</button> {{-- annotation heatmaps --}}
+        </div>
+
+        <div class="flex flex-row w-full justify-start ps-[34px]
+         text-[10px] text-[#999999] lowercase">
+            Safety and Errors
+        </div>
+        <div class="flex grid grid-rows-1 grid-cols-2 gap-x-1 w-full items-center justify-between text-center font-medium text-slate-600">
+            <button class="border border-solid border-slate-500 rounded shadow h-[50px]">AI Errors</button> {{-- annotation heatmaps --}}
+            <button class="border border-solid border-slate-500 rounded shadow h-[50px]">User Disagreement</button> {{-- annotation heatmaps --}}
+        </div>
+
+        <div class="flex flex-row w-full justify-start ps-[34px]
+         text-[10px] text-[#999999] lowercase">
+            Human Factors
+        </div>
+        <div class="flex grid grid-rows-1 grid-cols-2 gap-x-1 w-full items-center justify-between text-center font-medium text-slate-600 mb-1">
+            <button class="border border-solid border-slate-500 rounded shadow h-[50px]">Usability</button> {{-- annotation heatmaps --}}
+            <button class="border border-solid border-slate-500 rounded shadow h-[50px]">Learnability</button> {{-- annotation heatmaps --}}
+        </div>
+        {{--<div class="flex grid grid-rows-1 grid-cols-2 w-full items-start justify-start">
+            <div> --}}{{-- Learnability --}}{{--
+                SUS
             </div>
-            <div> {{-- Learnability --}}
-                <livewire:easl-va.utils.button title="show software learnability" id="detail-plot-learnability" icon_path="assets/learnability-icon.svg" />
-                <livewire:easl-va.utils.floating-window id="detail-plot-learnability" label="software learnability" type="learnability"/>
+            <div> --}}{{-- Learnability --}}{{--
+                learnability
+--}}{{--                <livewire:easl-va.utils.button title="show software learnability" id="detail-plot-learnability" icon_path="assets/learnability-icon.svg" />--}}{{--
+--}}{{--                <livewire:easl-va.utils.floating-window id="detail-plot-learnability" label="software learnability" type="learnability"/>--}}{{--
             </div>
-            <div></div> {{-- intentionally blank --}}
-            <div></div> {{-- intentionally blank --}}
-        </div>
-
-        <div class="flex flex-row w-full justify-start ps-[34px]
-         text-[10px] text-[#999999] lowercase">
-            surveys
-        </div>
-        <div class="flex grid grid-rows-1 grid-cols-4 w-full items-center justify-center">
-            <div>1</div> {{-- metadata --}}
-            <div> {{-- SNS --}}
-                <livewire:easl-va.utils.button title="show numeracy results" id="detail-plot-numeracy" icon_path="assets/sns-survey-icon.svg" />
-                <livewire:easl-va.utils.floating-window zIndex="200" id="detail-plot-numeracy" label="participant numeracy" type="sns" />
-            </div>
-            <div>3</div> {{-- SUS --}}
-            <div>4</div>
-        </div>
-
-        <div class="flex flex-row w-full justify-start ps-[34px]
-         text-[10px] text-[#999999] lowercase">
-            task analysis
-        </div>
-        <div class="flex grid grid-rows-1 grid-cols-4 w-full items-start justify-start">
-            <button>1</button> {{-- annotation heatmaps --}}
-            <button>2</button> {{-- selection heatmaps --}}
-            <button>3</button> {{-- selection freq --}}
-            <button>4</button> {{-- annotation agreemeent --}}
-        </div>
-
-        <div class="flex flex-row w-full justify-start ps-[34px]
-         text-[10px] text-[#999999] lowercase">
-            intervention analysis
-        </div>
-        <div class="flex grid grid-rows-2 grid-cols-4 w-full items-start justify-start">
-            <button>1</button> {{-- annotation heatmaps --}}
-            <button>2</button> {{-- selection heatmaps --}}
-            <button>3</button> {{-- selection freq --}}
-            <button>4</button> {{-- annotation agreemeent --}}
-        </div>
+        </div>--}}
 
 
 
-        <hr class="border-[#999999] border-t-1 mx-4">
-        <div class="flex flex-row w-full justify-start px-2 pt-2
-         text-xs text-[#999999] uppercase">
-            select/filter/annotate
-        </div>
+{{--        <hr class="border-[#999999] border-t-1 mx-4">--}}
+{{--        <div class="flex flex-row w-full justify-start px-2 pt-2--}}
+{{--         text-xs text-[#999999] uppercase">--}}
+{{--            select/filter/annotate--}}
+{{--        </div>--}}
 
-        <hr class="border-[#999999] border-t-1 mx-4">
-        <div class="flex flex-row w-full justify-start px-2 pt-2
-         text-xs text-[#999999] uppercase">
-            what-if analysis
-        </div>
+{{--        <hr class="border-[#999999] border-t-1 mx-4">--}}
+{{--        <div class="flex flex-row w-full justify-start px-2 pt-2--}}
+{{--         text-xs text-[#999999] uppercase">--}}
+{{--            what-if analysis--}}
+{{--        </div>--}}
         
 </div>
 </div>

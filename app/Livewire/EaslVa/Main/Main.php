@@ -14,13 +14,11 @@ class Main extends Component
     {
         // opencpu api is exposed on :8004
         $this->hostname = getenv('APP_URL') . ':8004';
-
-        $this->color = 'celltypes';
     }
 
     public function getUserPlotUrl()
     {
-        $this->url = $this->hostname . '/ocpu/library/voyageneR/R/plotDimReduction/json';
+        $this->url = $this->hostname . '/ocpu/library/easlanalytics/R/MCABiPlot/json';
         return $this->url;
     }
 
